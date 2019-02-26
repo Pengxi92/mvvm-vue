@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>self-vue</title>
+</head>
+<style>
+    #app {
+        text-align: center;
+    }
+</style>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <input v-model="name">
+        <h1>{{name}}</h1>
+        <button v-on:click="clickMe">click me!</button>
+    </div>
+</body>
+<script src="js/observer.js"></script>
+<script src="js/watcher.js"></script>
+<script src="js/compile.js"></script>
+<script src="js/index.js"></script>
+<script type="text/javascript">
+    var ele = document.querySelector('#name');
+    var selfVue = new SelfVue({
+      el: '#app',
+      data: {
+        title: 'hello world',
+        name: '',
+      },
+      methods: {
+        clickMe: function () {
+          console.log('title值改变了');
+          this.title = 'hello world! beijing';
+        }
+      },
+      mounted: function () {
+        window.setTimeout(function () {
+          console.log('name值改变了');
+          selfVue.name = '北京';
+        }, 4000);
+      }
+    });
+</script>
+</html>
